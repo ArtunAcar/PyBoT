@@ -1,0 +1,71 @@
+import discord
+from discord.ext import commands
+import random
+import os
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='$', intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'{bot.user} olarak giriş yaptık')
+
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f'Merhaba! Ben {bot.user}, bir Discord sohbet botuyum!')
+
+@bot.command()
+async def heh(ctx, count_heh = 5):
+    await ctx.send("he" * count_heh)
+
+@bot.command()
+async def roll(ctx, dice: str):
+    """Rolls a dice in NdN format."""
+    try:
+        rolls, limit = map(int, dice.split('d'))
+    except Exception:
+        await ctx.send('Format has to be in NdN!')
+        return
+
+    result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
+    await ctx.send(result)
+
+@bot.command()
+async def mem(ctx):
+    liste = os.listdir('M2L1/img')
+    rastgelemem = random.choice(liste)
+    with open(f'M2L1/img/{rastgelemem}', 'rb') as f:
+        # Dönüştürülen Discord kütüphane dosyasını bu değişkende saklayalım!
+        picture = discord.File(f)
+   # Daha sonra bu dosyayı bir parametre olarak gönderebiliriz!
+    await ctx.send(file=picture)
+
+
+
+
+@bot.command()
+async def cevre(ctx):
+    konular = ['Geri Dönüşüm Oranı',  'Türkiye Her Yıl Ton Atık' ,'Çevreyi Korumak için Ne yapılabilir']
+    GD = random.choice(konular)
+    if GD == konular[0]:
+        GDO = "Türkiye'deki geri dönüşüm oranı %32'dir."
+        
+    elif GD == konular[1]:
+        GDO = "Türkiye’de yıllık yaklaşık 32 milyon ton katı atık üretilmektedir."
+        
+    elif GD == konular[2]:
+        GDO = "1-Araba kullanmak yerine yürümeyi tercih edin 2-Su kullanımında tasarruf yapın. 3-Elektronik eşyaları düzenli olarak temizleyin. 4- Kağıt faturaları e-fatura olarak alın. 5- Çöpleri doğada hızlı kaybolan özel torbalara koyun.  "
+    await ctx.send(GDO)
+
+    
+
+
+    
+
+
+
+
+
+bot.run("MTIyNDc3MTkwMTM5MDU4NTg3Ng.GHoJoG.FChZ125oiK4RuKKWqUv8B3C0ZArIjbpMUPW2Mc")
