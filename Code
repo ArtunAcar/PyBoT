@@ -59,13 +59,4 @@ async def cevre(ctx):
         GDO = "1-Araba kullanmak yerine yürümeyi tercih edin 2-Su kullanımında tasarruf yapın. 3-Elektronik eşyaları düzenli olarak temizleyin. 4- Kağıt faturaları e-fatura olarak alın. 5- Çöpleri doğada hızlı kaybolan özel torbalara koyun.  "
     await ctx.send(GDO)
 
-    
 
-
-    
-
-
-
-
-
-bot.run("MTIyNDc3MTkwMTM5MDU4NTg3Ng.GHoJoG.FChZ125oiK4RuKKWqUv8B3C0ZArIjbpMUPW2Mc")
