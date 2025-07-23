@@ -1,1 +1,1 @@
-# PyBoT
+# Discord-Image-Classification-Bot
